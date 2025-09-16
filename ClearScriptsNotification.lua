@@ -4,7 +4,7 @@ local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
-local text = "ลบการทำงานของสคริปต์สำเร็จ"
+local text = "Script cleared successfully"
 
 -- GUI หลัก
 local screenGui = Instance.new("ScreenGui")
@@ -24,22 +24,22 @@ frame.Parent = screenGui
 local function createLetter(char, index)
     local letter = Instance.new("TextLabel")
     letter.Text = char
-    letter.Size = UDim2.new(0, 40, 1, 0)
-    letter.Position = UDim2.new(0, index * 28, 0, 50) -- เริ่มต่ำกว่าปกติ
+    letter.Size = UDim2.new(0, 30, 1, 0)
+    letter.Position = UDim2.new(0, index * 25, 0, 50) -- เริ่มต่ำกว่าปกติ
     letter.BackgroundTransparency = 1
     letter.TextColor3 = Color3.fromRGB(255, 255, 255)
-    letter.Font = Enum.Font.SourceSansBold -- ✅ รองรับภาษาไทย
+    letter.Font = Enum.Font.GothamBold -- ✅ ฟอนต์นี้สวยสำหรับอังกฤษ
     letter.TextTransparency = 1
-    letter.TextSize = 36
+    letter.TextSize = 34
     letter.Parent = frame
 
     -- Effect หนอน: fade in + เลื่อนขึ้น + ขยายเล็กน้อย
     local tween = TweenService:Create(letter, TweenInfo.new(
         0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out
     ), {
-        Position = UDim2.new(0, index * 28, 0, 0),
+        Position = UDim2.new(0, index * 25, 0, 0),
         TextTransparency = 0,
-        TextSize = 40
+        TextSize = 38
     })
 
     tween:Play()
@@ -48,7 +48,7 @@ end
 -- แสดงทีละตัว
 for i = 1, #text do
     local char = string.sub(text, i, i)
-    task.wait(0.08) -- หน่วงเล็กน้อย
+    task.wait(0.07) -- หน่วงเล็กน้อย
     createLetter(char, i - 1)
 end
 
